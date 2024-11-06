@@ -1,0 +1,6 @@
+@KanyeRestAPI_HostAddress = http://localhost:5054
+
+GET {{KanyeRestAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
