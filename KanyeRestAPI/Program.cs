@@ -16,8 +16,8 @@ builder.Services.AddSwaggerGen(s =>
     s.SwaggerDoc("v1", new OpenApiInfo()
     {
         Version = "v1",
-        Title = "Api do Kanye Rest",
-        Description = "Api que gera falas aleatórias do Kanye Rest",
+        Title = "Api do Kanye West",
+        Description = "Api que gera falas aleatórias do Kanye West",
         Contact = new OpenApiContact
         {
             Name = "Foqsz",
