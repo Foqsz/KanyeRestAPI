@@ -1,6 +1,7 @@
 using KanyeRestAPI.Refit;
 using KanyeRestAPI.Service;
 using KanyeRestAPI.Service.Interface;
+using Microsoft.OpenApi.Models;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(s =>
+{
+    s.SwaggerDoc("v1", new OpenApiInfo()
+    {
+        Version = "v1",
+        Title = "Api do Kanye Rest",
+        Description = "Api que gera falas aleatórias do Kanye Rest",
+        Contact = new OpenApiContact
+        {
+            Name = "Foqsz",
+            Email = "foqsgt09@gmail.com",
+            Url = new Uri("https://foqsz.github.io/"),
+        }
+    });
+    s.EnableAnnotations();
+});
 
-builder.Services.AddScoped<IKanyeRestService, KanyeRestService>();
+builder.Services.AddScoped<IKanyeRestService, KanyeRestService>();  
 
 builder.Services.AddRefitClient<IKanyeRestRefit>().ConfigureHttpClient(c =>
 {

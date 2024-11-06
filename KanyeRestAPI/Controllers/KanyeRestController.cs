@@ -1,6 +1,7 @@
 ﻿using KanyeRestAPI.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace KanyeRestAPI.Controllers;
 
@@ -16,6 +17,8 @@ public class KanyeRestController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(Summary = "Retorna uma fala aleatória do Kanye Rest",
+        Description = "Gere uma fala aleatória!")]
     public async Task<IActionResult> GetKanyeRest()
     {
         var kanyeRestResponse = await _kanyeRestService.GetKanyeRestRandom();
@@ -25,6 +28,6 @@ public class KanyeRestController : ControllerBase
             return StatusCode(StatusCodes.Status404NotFound, "Erro ao obter uma fala do Kanye Rest.");
         }
 
-        return StatusCode(StatusCodes.Status200OK, (new { KanyeRestAPI = kanyeRestResponse}));
+        return StatusCode(StatusCodes.Status200OK, (new { KanyeRestAPI = kanyeRestResponse }));
     }
 }
